@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Search() {
+function Search(props) {
+  const { list, setList } = props;
+  const [val, setVal] = useState("");
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("submitted");
+    fetch("http://localhost:6001/listings")
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (val.length > 0) {
+          console.log(val.length);
+          const searchItem = data.filter((product) => {
+            console.log(product.description.split(" ")[0]);
+            return product.description.split(" ")[0] === val;
+          });
+          console.log(searchItem);
+          setList(searchItem);
+          setVal("");
+        } else {
+          setList(data);
+        }
+      });
   }
 
   return (
@@ -12,8 +29,11 @@ function Search() {
         type="text"
         id="search"
         placeholder="search free stuff"
-        value={""}
-        onChange={(e) => console.log(e.target.value)}
+        value={val}
+        onChange={(e) => {
+          setVal(e.target.value);
+          console.log(e.target.value);
+        }}
       />
       <button type="submit">🔍</button>
     </form>
