@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 
-function ListingCard({ item, list, setList }) {
+function ListingCard({
+  id,
+  image,
+  price,
+  description,
+  location,
+  list,
+  setList,
+}) {
   const [fav, setFav] = useState(false);
   const handleDelete = (key) => {
-    console.log(key);
     fetch(`http://localhost:6001/listings/${key}`, {
       method: "DELETE",
     });
-    console.log(list);
     const newArr = list.filter((item) => {
       return item.id !== key;
     });
@@ -15,10 +21,10 @@ function ListingCard({ item, list, setList }) {
     setList(newArr);
   };
   return (
-    <li className="card" key={item.id}>
+    <li className="card" key={id}>
       <div className="image">
         <span className="price">$0</span>
-        <img src={item.image} alt={item.description} />
+        <img src={image} alt={description} />
       </div>
       <div className="details">
         {fav ? (
@@ -41,12 +47,12 @@ function ListingCard({ item, list, setList }) {
           </button>
         )}
 
-        <strong>{item.description}</strong>
-        <span> · {item.location}</span>
+        <strong>{description}</strong>
+        <span> · {location}</span>
         <button
           className="emoji-button delete"
           onClick={() => {
-            handleDelete(item.id);
+            handleDelete(id);
           }}
         >
           🗑

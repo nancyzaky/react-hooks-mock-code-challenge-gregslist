@@ -17,14 +17,6 @@
       "description": "Treadmill Parts For Free",
       "image": "./images/treadmill.jpg",
       "location": "East Flatbush"
-    },
-    {
-      "description": "couch",
-      "image": {
-        "0": {}
-      },
-      "location": "Phoenix ",
-      "id": 8
     }
   ]
 }

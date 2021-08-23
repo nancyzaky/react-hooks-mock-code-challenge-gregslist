@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const Post = ({ list, setList }) => {
   const [image, setImage] = useState(null);

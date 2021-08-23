@@ -16,10 +16,10 @@ function Search(props) {
           });
           console.log(searchItem);
           setList(searchItem);
-          setVal("");
         } else {
           setList(data);
         }
+        setVal("");
       });
   }
 
